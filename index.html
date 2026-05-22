@@ -37,24 +37,9 @@
     background: var(--yellow);
     border-bottom: 2px solid var(--black);
   }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-  }
-  .logo img {
-    height: 52px;
-    width: auto;
-    display: block;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-    align-items: center;
-  }
+  .logo { display: flex; align-items: center; text-decoration: none; }
+  .logo img { height: 52px; width: auto; display: block; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
   .nav-links a {
     color: var(--black);
     text-decoration: none;
@@ -65,7 +50,6 @@
     transition: opacity 0.2s;
   }
   .nav-links a:hover { opacity: 0.5; }
-
   .wa-nav-btn {
     display: flex !important;
     align-items: center;
@@ -76,8 +60,9 @@
     border-radius: 2px;
     font-weight: 700 !important;
     opacity: 1 !important;
+    transition: opacity 0.2s !important;
   }
-  .wa-nav-btn:hover { opacity: 0.85 !important; }
+  .wa-nav-btn:hover { opacity: 0.8 !important; }
 
   /* HERO */
   .hero {
@@ -91,7 +76,6 @@
     position: relative;
     background: var(--yellow);
   }
-
   .hero-badge {
     display: inline-block;
     background: var(--black);
@@ -105,7 +89,6 @@
     margin-bottom: 2rem;
     animation: fadeUp 0.5s ease both;
   }
-
   .hero h1 {
     font-size: clamp(5.5rem, 18vw, 15rem);
     font-weight: 300;
@@ -114,11 +97,10 @@
     line-height: 0.88;
     color: var(--black);
     margin-bottom: 1.5rem;
-    animation: fadeUp 0.6s 0.1s ease both;
     opacity: 0;
+    animation: fadeUp 0.6s 0.1s ease both;
     animation-fill-mode: forwards;
   }
-
   .hero-sub {
     font-size: clamp(1.1rem, 3vw, 1.7rem);
     font-weight: 400;
@@ -128,7 +110,6 @@
     animation: fadeUp 0.6s 0.2s ease both;
     animation-fill-mode: forwards;
   }
-
   .hero-btns {
     display: flex;
     gap: 1rem;
@@ -138,7 +119,6 @@
     animation: fadeUp 0.6s 0.3s ease both;
     animation-fill-mode: forwards;
   }
-
   .btn-black {
     display: inline-flex;
     align-items: center;
@@ -153,11 +133,7 @@
     box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
     transition: transform 0.15s, box-shadow 0.15s;
   }
-  .btn-black:hover {
-    transform: translate(-2px,-2px);
-    box-shadow: 7px 7px 0 rgba(0,0,0,0.25);
-  }
-
+  .btn-black:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 rgba(0,0,0,0.25); }
   .btn-outline {
     display: inline-flex;
     align-items: center;
@@ -173,11 +149,9 @@
     transition: background 0.15s, color 0.15s;
   }
   .btn-outline:hover { background: var(--black); color: var(--yellow); }
-
   .scroll-hint {
     position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
+    bottom: 2.5rem; left: 50%;
     transform: translateX(-50%);
     font-size: 0.68rem;
     font-weight: 700;
@@ -191,8 +165,7 @@
   }
   .scroll-hint::after {
     content: '';
-    width: 1px;
-    height: 40px;
+    width: 1px; height: 40px;
     background: var(--black);
     animation: pulse 1.6s ease-in-out infinite;
   }
@@ -205,52 +178,21 @@
   /* STATS */
   .stats {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     background: var(--black);
     border-top: 2px solid var(--black);
   }
-  .stat {
-    padding: 2.5rem 1.5rem;
-    text-align: center;
-    border-right: 1px solid rgba(251,216,50,0.12);
-  }
-  .stat:last-child { border-right: none; }
-  .stat-num {
-    font-size: 2.4rem;
-    font-weight: 900;
-    color: var(--yellow);
-    letter-spacing: -2px;
-  }
-  .stat-lbl {
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: rgba(251,216,50,0.45);
-    margin-top: 0.3rem;
-  }
+  .stat { padding: 2.5rem 1.5rem; text-align: center; }
+  .stat-num { font-size: 2.4rem; font-weight: 900; color: var(--yellow); letter-spacing: -2px; }
+  .stat-lbl { font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(251,216,50,0.45); margin-top: 0.3rem; }
 
   /* SECTION COMMONS */
   section { padding: 6rem 3rem; }
-  .sec-label {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    opacity: 0.4;
-    margin-bottom: 0.7rem;
-  }
-  .sec-title {
-    font-size: clamp(2rem, 5vw, 3.6rem);
-    font-weight: 900;
-    letter-spacing: -2px;
-    line-height: 1.05;
-    margin-bottom: 2.5rem;
-  }
+  .sec-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; opacity: 0.4; margin-bottom: 0.7rem; }
+  .sec-title { font-size: clamp(2rem, 5vw, 3.6rem); font-weight: 900; letter-spacing: -2px; line-height: 1.05; margin-bottom: 2.5rem; }
 
   /* DIAGNOSE */
   #diagnose { background: var(--yellow); border-top: 2px solid var(--black); }
-
   .diag-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -270,19 +212,12 @@
   .d-ico { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
   .diag-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
   .diag-card p { font-size: 0.78rem; opacity: 0.6; line-height: 1.6; }
-  .d-arrow {
-    position: absolute;
-    top: 1.5rem; right: 1.5rem;
-    opacity: 0;
-    transition: opacity 0.2s;
-    font-size: 1.1rem;
-  }
+  .d-arrow { position: absolute; top: 1.5rem; right: 1.5rem; opacity: 0; transition: opacity 0.2s; font-size: 1.1rem; }
 
   /* SERVICES */
   #services { background: var(--black); color: var(--yellow); border-top: 2px solid rgba(251,216,50,0.15); }
   #services .sec-label { color: var(--yellow); }
   #services .sec-title { color: var(--yellow); }
-
   .svc-list { border: 2px solid rgba(251,216,50,0.18); }
   .svc-row {
     display: flex;
@@ -300,43 +235,40 @@
   .svc-left { display: flex; align-items: center; gap: 1.5rem; }
   .svc-num { font-size: 0.68rem; font-weight: 700; letter-spacing: 2px; opacity: 0.3; min-width: 28px; }
   .svc-name { font-size: 1.05rem; font-weight: 700; }
-  .svc-tag {
-    font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-    background: rgba(251,216,50,0.12); color: var(--yellow);
-    padding: 0.22rem 0.65rem; border-radius: 2px; opacity: 0.7;
-  }
+  .svc-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; background: rgba(251,216,50,0.12); color: var(--yellow); padding: 0.22rem 0.65rem; border-radius: 2px; opacity: 0.7; }
   .svc-arrow { font-size: 1.1rem; opacity: 0.25; transition: opacity 0.18s, transform 0.18s; }
   .svc-row:hover .svc-arrow { opacity: 1; transform: translateX(4px); }
 
-  /* HOW */
+  /* HOW IT WORKS */
   #how { background: var(--black); color: var(--yellow); border-top: 2px solid rgba(251,216,50,0.1); }
   #how .sec-label { color: var(--yellow); }
   #how .sec-title { color: var(--yellow); }
-
   .steps {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2px;
     background: rgba(251,216,50,0.1);
   }
-  .step {
-    background: var(--black);
-    padding: 2.5rem 2rem;
-    position: relative;
-  }
-  .step-bg {
-    position: absolute;
-    top: 1rem; right: 1.5rem;
-    font-size: 5rem;
-    font-weight: 900;
-    color: var(--yellow);
-    opacity: 0.06;
-    line-height: 1;
-    pointer-events: none;
-  }
+  .step { background: var(--black); padding: 2.5rem 2rem; position: relative; }
+  .step-bg { position: absolute; top: 1rem; right: 1.5rem; font-size: 5rem; font-weight: 900; color: var(--yellow); opacity: 0.06; line-height: 1; pointer-events: none; }
   .step-ico { font-size: 1.6rem; margin-bottom: 1rem; }
   .step h3 { font-size: 0.95rem; font-weight: 700; color: var(--yellow); margin-bottom: 0.5rem; }
-  .step p { font-size: 0.78rem; opacity: 0.45; line-height: 1.6; color: var(--yellow); }
+  .step p { font-size: 0.78rem; opacity: 0.5; line-height: 1.7; color: var(--yellow); }
+  .step-note { font-size: 0.7rem; opacity: 0.3; color: var(--yellow); margin-top: 0.6rem; font-style: italic; }
+
+  /* TRUST */
+  #trust { background: var(--yellow); border-top: 2px solid var(--black); }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    background: var(--black);
+    border: 2px solid var(--black);
+  }
+  .trust-card { background: var(--yellow); padding: 1.8rem; }
+  .trust-ico { font-size: 1.5rem; margin-bottom: 0.8rem; display: block; }
+  .trust-card h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .trust-card p { font-size: 0.76rem; opacity: 0.6; line-height: 1.6; }
 
   /* CTA */
   #cta {
@@ -359,7 +291,7 @@
   }
   #cta .sec-title { margin-bottom: 0.8rem; position: relative; }
   #cta p { font-size: 1.1rem; opacity: 0.55; margin-bottom: 2.5rem; position: relative; }
-
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
   .wa-cta {
     display: inline-flex;
     align-items: center;
@@ -373,13 +305,25 @@
     border-radius: 2px;
     box-shadow: 7px 7px 0 rgba(0,0,0,0.18);
     transition: transform 0.15s, box-shadow 0.15s;
-    position: relative;
     letter-spacing: 0.3px;
   }
-  .wa-cta:hover {
-    transform: translate(-3px,-3px);
-    box-shadow: 10px 10px 0 rgba(0,0,0,0.22);
+  .wa-cta:hover { transform: translate(-3px,-3px); box-shadow: 10px 10px 0 rgba(0,0,0,0.22); }
+  .ig-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: transparent;
+    color: var(--black);
+    padding: 1.2rem 2.8rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-decoration: none;
+    border-radius: 2px;
+    border: 2.5px solid var(--black);
+    transition: background 0.15s, color 0.15s;
+    letter-spacing: 0.3px;
   }
+  .ig-cta:hover { background: var(--black); color: var(--yellow); }
 
   /* FOOTER */
   footer {
@@ -433,10 +377,10 @@
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
-    .stats { grid-template-columns: repeat(2,1fr); }
     section { padding: 4rem 1.5rem; }
     footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
     .hero h1 { letter-spacing: -3px; }
+    .cta-btns { flex-direction: column; align-items: center; }
   }
 </style>
 </head>
@@ -460,7 +404,7 @@
 
 <!-- HERO -->
 <section class="hero">
-  <span class="hero-badge">&#x1F527; Car Diagnostics &amp; Repair &mdash; London</span>
+  <span class="hero-badge">&#x1F527; Car Servicing &amp; Repairs &mdash; London</span>
   <h1>.Sorted</h1>
   <p class="hero-sub">Car problems? Sorted.</p>
   <div class="hero-btns">
@@ -475,30 +419,30 @@
 
 <!-- STATS -->
 <div class="stats">
-  <div class="stat" style="border-right:none;"><div class="stat-num">Same Day</div><div class="stat-lbl">Response</div></div>
+  <div class="stat"><div class="stat-num">Same Day</div><div class="stat-lbl">Response</div></div>
 </div>
 
 <!-- DIAGNOSE -->
 <section id="diagnose">
   <div class="sec-label">01 &mdash; Diagnose</div>
-  <h2 class="sec-title">What's wrong<br>with your car?</h2>
+  <h2 class="sec-title">What&#39;s wrong<br>with your car?</h2>
   <div class="diag-grid">
     <div class="diag-card" onclick="wa('Engine warning light is on')">
       <span class="d-ico">&#x26A0;&#xFE0F;</span>
       <h3>Warning Lights</h3>
-      <p>Engine, ABS, oil or dashboard warning light on? We'll scan and diagnose it.</p>
+      <p>Engine, ABS, oil or dashboard warning light on? We&#39;ll scan and diagnose it.</p>
       <span class="d-arrow">&rarr;</span>
     </div>
     <div class="diag-card" onclick="wa('My car wont start')">
       <span class="d-ico">&#x1F511;</span>
-      <h3>Won't Start</h3>
-      <p>Dead battery, starter motor, ignition or fuel issue &mdash; we'll find it fast.</p>
+      <h3>Won&#39;t Start</h3>
+      <p>Dead battery, starter motor, ignition or fuel issue &mdash; we&#39;ll find it fast.</p>
       <span class="d-arrow">&rarr;</span>
     </div>
     <div class="diag-card" onclick="wa('My car is making a strange noise')">
       <span class="d-ico">&#x1F50A;</span>
       <h3>Strange Noises</h3>
-      <p>Knocking, grinding, squealing or rattling? Describe it and we'll sort it.</p>
+      <p>Knocking, grinding, squealing or rattling? Describe it and we&#39;ll sort it.</p>
       <span class="d-arrow">&rarr;</span>
     </div>
     <div class="diag-card" onclick="wa('My car is overheating')">
@@ -516,19 +460,19 @@
     <div class="diag-card" onclick="wa('I have a brake problem')">
       <span class="d-ico">&#x1F6D1;</span>
       <h3>Brake Issues</h3>
-      <p>Soft pedal, pulling or grinding when braking &mdash; don't delay this one.</p>
+      <p>Soft pedal, pulling or grinding when braking &mdash; don&#39;t delay this one.</p>
       <span class="d-arrow">&rarr;</span>
     </div>
-    <div class="diag-card" onclick="wa('My car has poor fuel economy')">
-      <span class="d-ico">&#x26FD;</span>
-      <h3>Poor Fuel Economy</h3>
-      <p>Burning through fuel too quickly? We'll track down the cause.</p>
+    <div class="diag-card" onclick="wa('My car needs a service')">
+      <span class="d-ico">&#x1F527;</span>
+      <h3>Servicing</h3>
+      <p>Interim, full or major service &mdash; we&#39;ll keep your car in top shape.</p>
       <span class="d-arrow">&rarr;</span>
     </div>
     <div class="diag-card" onclick="wa('I have a different car problem')">
-      <span class="d-ico">&#x1F527;</span>
+      <span class="d-ico">&#x2753;</span>
       <h3>Something Else?</h3>
-      <p>Not sure what's wrong? Message us a description and we'll diagnose it.</p>
+      <p>Not sure what&#39;s wrong? Message us a description and we&#39;ll diagnose it.</p>
       <span class="d-arrow">&rarr;</span>
     </div>
   </div>
@@ -539,42 +483,42 @@
   <div class="sec-label">02 &mdash; Services</div>
   <h2 class="sec-title">What we do</h2>
   <div class="svc-list">
-    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I%27d+like+a+full+diagnostic+scan&type=phone_number&app_absent=0" target="_blank" class="svc-row">
-      <div class="svc-left"><span class="svc-num">01</span><span class="svc-name">Full Diagnostic Scan</span><span class="svc-tag">Popular</span></div>
+    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+a+diagnostic+inspection&type=phone_number&app_absent=0" target="_blank" class="svc-row">
+      <div class="svc-left"><span class="svc-num">01</span><span class="svc-name">Diagnostic Inspection</span><span class="svc-tag">Popular</span></div>
       <span class="svc-arrow">&rarr;</span>
     </a>
-    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+a+service+or+MOT+prep&type=phone_number&app_absent=0" target="_blank" class="svc-row">
-      <div class="svc-left"><span class="svc-num">02</span><span class="svc-name">Servicing &amp; MOT Prep</span><span class="svc-tag">Essential</span></div>
+    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+an+interim+service&type=phone_number&app_absent=0" target="_blank" class="svc-row">
+      <div class="svc-left"><span class="svc-num">02</span><span class="svc-name">Interim Service</span></div>
       <span class="svc-arrow">&rarr;</span>
     </a>
-    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+brake+repair&type=phone_number&app_absent=0" target="_blank" class="svc-row">
-      <div class="svc-left"><span class="svc-num">03</span><span class="svc-name">Brake Repair &amp; Replacement</span></div>
+    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+a+full+service&type=phone_number&app_absent=0" target="_blank" class="svc-row">
+      <div class="svc-left"><span class="svc-num">03</span><span class="svc-name">Full Service</span><span class="svc-tag">Popular</span></div>
       <span class="svc-arrow">&rarr;</span>
     </a>
-    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+engine+repair&type=phone_number&app_absent=0" target="_blank" class="svc-row">
-      <div class="svc-left"><span class="svc-num">04</span><span class="svc-name">Engine Repairs</span></div>
+    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+a+major+service&type=phone_number&app_absent=0" target="_blank" class="svc-row">
+      <div class="svc-left"><span class="svc-num">04</span><span class="svc-name">Major Service</span></div>
+      <span class="svc-arrow">&rarr;</span>
+    </a>
+    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+brake+pads+replaced&type=phone_number&app_absent=0" target="_blank" class="svc-row">
+      <div class="svc-left"><span class="svc-num">05</span><span class="svc-name">Brake Pads Replacement</span></div>
+      <span class="svc-arrow">&rarr;</span>
+    </a>
+    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+brake+pads+and+discs+replaced&type=phone_number&app_absent=0" target="_blank" class="svc-row">
+      <div class="svc-left"><span class="svc-num">06</span><span class="svc-name">Brake Pads &amp; Discs Replacement</span></div>
       <span class="svc-arrow">&rarr;</span>
     </a>
     <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+electrical+or+battery+work&type=phone_number&app_absent=0" target="_blank" class="svc-row">
-      <div class="svc-left"><span class="svc-num">05</span><span class="svc-name">Electrical &amp; Battery</span></div>
+      <div class="svc-left"><span class="svc-num">07</span><span class="svc-name">Electrical &amp; Battery</span></div>
       <span class="svc-arrow">&rarr;</span>
     </a>
-    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+suspension+or+steering+work&type=phone_number&app_absent=0" target="_blank" class="svc-row">
-      <div class="svc-left"><span class="svc-num">06</span><span class="svc-name">Suspension &amp; Steering</span></div>
-      <span class="svc-arrow">&rarr;</span>
-    </a>
-    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+tyres+or+wheel+alignment&type=phone_number&app_absent=0" target="_blank" class="svc-row">
-      <div class="svc-left"><span class="svc-num">07</span><span class="svc-name">Tyres &amp; Wheel Alignment</span><span class="svc-tag">Fast</span></div>
-      <span class="svc-arrow">&rarr;</span>
-    </a>
-    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+air+conditioning+repair&type=phone_number&app_absent=0" target="_blank" class="svc-row">
-      <div class="svc-left"><span class="svc-num">08</span><span class="svc-name">Air Conditioning</span></div>
+    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+have+a+different+car+issue&type=phone_number&app_absent=0" target="_blank" class="svc-row">
+      <div class="svc-left"><span class="svc-num">08</span><span class="svc-name">Other Repairs</span><span class="svc-tag">Ask Us</span></div>
       <span class="svc-arrow">&rarr;</span>
     </a>
   </div>
 </section>
 
-<!-- HOW -->
+<!-- HOW IT WORKS -->
 <section id="how">
   <div class="sec-label">03 &mdash; Process</div>
   <h2 class="sec-title">How it works</h2>
@@ -583,38 +527,95 @@
       <div class="step-bg">1</div>
       <div class="step-ico">&#x1F4AC;</div>
       <h3>Message Us</h3>
-      <p>Drop us a WhatsApp describing your car issue &mdash; any make, any model.</p>
+      <p>Send us a WhatsApp &mdash; any make, any model, any issue.</p>
     </div>
     <div class="step">
       <div class="step-bg">2</div>
-      <div class="step-ico">&#x1F50D;</div>
-      <h3>We Diagnose</h3>
-      <p>We ask the right questions, run diagnostics and identify the root cause.</p>
+      <div class="step-ico">&#x1F4CB;</div>
+      <h3>Share Your Details</h3>
+      <p>Tell us your vehicle registration, mileage, and your contact details so we can get things moving.</p>
     </div>
     <div class="step">
       <div class="step-bg">3</div>
-      <div class="step-ico">&#x1F4B0;</div>
-      <h3>Get a Quote</h3>
-      <p>Clear, honest pricing &mdash; no hidden fees. You approve before we start.</p>
+      <div class="step-ico">&#x1F527;</div>
+      <h3>Tell Us What You Need</h3>
+      <p>Let us know what service or repair you&#39;re after from our list of available jobs.</p>
     </div>
     <div class="step">
       <div class="step-bg">4</div>
+      <div class="step-ico">&#x1F9B0;</div>
+      <h3>Mechanic Contacts You</h3>
+      <p>One of our partnered mechanics will reach out directly to agree a day and time that works for you.</p>
+      <p class="step-note">Book before 2pm Mon&ndash;Sat for next-day service (subject to parts availability)</p>
+    </div>
+    <div class="step">
+      <div class="step-bg">5</div>
+      <div class="step-ico">&#x1F517;</div>
+      <h3>Secure Payment Link</h3>
+      <p>On the day of your job, we&#39;ll send you a secure payment link. No payment until the day.</p>
+    </div>
+    <div class="step">
+      <div class="step-bg">6</div>
       <div class="step-ico">&#x2705;</div>
-      <h3>Sorted.</h3>
-      <p>We fix it properly, first time. Your car back on the road, problem solved.</p>
+      <h3>Job Done.</h3>
+      <p>Your car is fixed, properly, first time. Sorted.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section id="trust">
+  <div class="sec-label">04 &mdash; Why Us</div>
+  <h2 class="sec-title">Built on trust</h2>
+  <div class="trust-grid">
+    <div class="trust-card">
+      <span class="trust-ico">&#x1F393;</span>
+      <h3>Qualified Mechanics</h3>
+      <p>All our mechanics hold a minimum Level 2 NVQ qualification.</p>
+    </div>
+    <div class="trust-card">
+      <span class="trust-ico">&#x1F6E1;&#xFE0F;</span>
+      <h3>Fully Insured</h3>
+      <p>We have the correct insurances in place. Copies available on request.</p>
+    </div>
+    <div class="trust-card">
+      <span class="trust-ico">&#x1F4C5;</span>
+      <h3>12-Month Parts Guarantee</h3>
+      <p>All parts fitted come with a 12-month guarantee for your peace of mind.</p>
+    </div>
+    <div class="trust-card">
+      <span class="trust-ico">&#x1F50D;</span>
+      <h3>56-Point Safety Check</h3>
+      <p>Every job includes a full 56-point vehicle safety check with a written report.</p>
+    </div>
+    <div class="trust-card">
+      <span class="trust-ico">&#x26A1;</span>
+      <h3>Cars, LCVs &amp; EVs</h3>
+      <p>We service cars, light commercial vehicles up to 3.5 tons, and electric vehicles.</p>
+    </div>
+    <div class="trust-card">
+      <span class="trust-ico">&#x1F4CD;</span>
+      <h3>London-Based</h3>
+      <p>On-site service at an agreed location within London.</p>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
 <section id="cta">
-  <div class="sec-label">04 &mdash; Contact</div>
+  <div class="sec-label">05 &mdash; Contact</div>
   <h2 class="sec-title">Ready to get sorted?</h2>
   <p>One message. No fuss. We get back to you fast.</p>
-  <a href="https://api.whatsapp.com/send/?phone=447940910853&text=Hi+.Sorted%2C+I+need+help+with+my+car&type=phone_number&app_absent=0" target="_blank" class="wa-cta">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    WhatsApp Us Now
-  </a>
+  <div class="cta-btns">
+    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=Hi+.Sorted%2C+I+need+help+with+my+car&type=phone_number&app_absent=0" target="_blank" class="wa-cta">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp Us Now
+    </a>
+    <a href="https://www.instagram.com/try.sorted" target="_blank" class="ig-cta">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      @try.sorted
+    </a>
+  </div>
 </section>
 
 <!-- FOOTER -->
@@ -633,7 +634,7 @@
   </div>
 </footer>
 
-<!-- FLOATING BUTTON -->
+<!-- FLOATING WHATSAPP -->
 <a href="https://api.whatsapp.com/send/?phone=447940910853&text=Hi+.Sorted%2C+I+need+help+with+my+car&type=phone_number&app_absent=0" target="_blank" class="fab" title="Chat on WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
