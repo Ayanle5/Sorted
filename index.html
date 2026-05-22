@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>.Sorted — Car Problems? Sorted.</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #F5C800;
+    --black: #0D0D0D;
+    --black2: #1A1A1A;
+    --mid: #2A2A2A;
+    --white: #ffffff;
+    --wa-green: #25D366;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--yellow);
+    color: var(--black);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 3rem;
+    background: var(--yellow);
+    border-bottom: 2px solid var(--black);
+  }
+
+  .logo {
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: var(--black);
+    text-decoration: none;
+    letter-spacing: -1.5px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    color: var(--black);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 0.5; }
+
+  .wa-nav-btn {
+    display: flex !important;
+    align-items: center;
+    gap: 0.45rem;
+    background: var(--black) !important;
+    color: var(--yellow) !important;
+    padding: 0.6rem 1.2rem !important;
+    border-radius: 2px;
+    font-weight: 700 !important;
+    opacity: 1 !important;
+  }
+  .wa-nav-btn:hover { opacity: 0.85 !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 5rem;
+    position: relative;
+    background: var(--yellow);
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--black);
+    color: var(--yellow);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 0.45rem 1.1rem;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .hero h1 {
+    font-size: clamp(5.5rem, 18vw, 15rem);
+    font-weight: 900;
+    letter-spacing: -5px;
+    line-height: 0.88;
+    color: var(--black);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  .hero-sub {
+    font-size: clamp(1.1rem, 3vw, 1.7rem);
+    font-weight: 400;
+    color: var(--black);
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.2s ease both;
+    animation-fill-mode: forwards;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.3s ease both;
+    animation-fill-mode: forwards;
+  }
+
+  .btn-black {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--black);
+    color: var(--yellow);
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 2px;
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-black:hover {
+    transform: translate(-2px,-2px);
+    box-shadow: 7px 7px 0 rgba(0,0,0,0.25);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    color: var(--black);
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    border: 2.5px solid var(--black);
+    border-radius: 2px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .btn-outline:hover { background: var(--black); color: var(--yellow); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.35;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .scroll-hint::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: var(--black);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:.1} }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* STATS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--black);
+    border-top: 2px solid var(--black);
+  }
+  .stat {
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    border-right: 1px solid rgba(245,200,0,0.12);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--yellow);
+    letter-spacing: -2px;
+  }
+  .stat-lbl {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(245,200,0,0.45);
+    margin-top: 0.3rem;
+  }
+
+  /* SECTION COMMONS */
+  section { padding: 6rem 3rem; }
+  .sec-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.4;
+    margin-bottom: 0.7rem;
+  }
+  .sec-title {
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1.05;
+    margin-bottom: 2.5rem;
+  }
+
+  /* DIAGNOSE */
+  #diagnose { background: var(--yellow); border-top: 2px solid var(--black); }
+
+  .diag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    background: var(--black);
+    border: 2px solid var(--black);
+  }
+  .diag-card {
+    background: var(--yellow);
+    padding: 2rem 1.8rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    position: relative;
+  }
+  .diag-card:hover { background: var(--black); color: var(--yellow); }
+  .diag-card:hover .d-arrow { opacity: 1; color: var(--yellow); }
+  .d-ico { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
+  .diag-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .diag-card p { font-size: 0.78rem; opacity: 0.6; line-height: 1.6; }
+  .d-arrow {
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-size: 1.1rem;
+  }
+
+  /* SERVICES */
+  #services { background: var(--black); color: var(--yellow); border-top: 2px solid rgba(245,200,0,0.15); }
+  #services .sec-label { color: var(--yellow); }
+  #services .sec-title { color: var(--yellow); }
+
+  .svc-list { border: 2px solid rgba(245,200,0,0.18); }
+  .svc-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.7rem 2rem;
+    border-bottom: 1px solid rgba(245,200,0,0.1);
+    transition: background 0.18s;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--yellow);
+  }
+  .svc-row:last-child { border-bottom: none; }
+  .svc-row:hover { background: rgba(245,200,0,0.06); }
+  .svc-left { display: flex; align-items: center; gap: 1.5rem; }
+  .svc-num { font-size: 0.68rem; font-weight: 700; letter-spacing: 2px; opacity: 0.3; min-width: 28px; }
+  .svc-name { font-size: 1.05rem; font-weight: 700; }
+  .svc-tag {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    background: rgba(245,200,0,0.12); color: var(--yellow);
+    padding: 0.22rem 0.65rem; border-radius: 2px; opacity: 0.7;
+  }
+  .svc-arrow { font-size: 1.1rem; opacity: 0.25; transition: opacity 0.18s, transform 0.18s; }
+  .svc-row:hover .svc-arrow { opacity: 1; transform: translateX(4px); }
+
+  /* HOW */
+  #how { background: var(--black); color: var(--yellow); border-top: 2px solid rgba(245,200,0,0.1); }
+  #how .sec-label { color: var(--yellow); }
+  #how .sec-title { color: var(--yellow); }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 2px;
+    background: rgba(245,200,0,0.1);
+  }
+  .step {
+    background: var(--black);
+    padding: 2.5rem 2rem;
+    position: relative;
+  }
+  .step-bg {
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--yellow);
+    opacity: 0.06;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .step-ico { font-size: 1.6rem; margin-bottom: 1rem; }
+  .step h3 { font-size: 0.95rem; font-weight: 700; color: var(--yellow); margin-bottom: 0.5rem; }
+  .step p { font-size: 0.78rem; opacity: 0.45; line-height: 1.6; color: var(--yellow); }
+
+  /* CTA */
+  #cta {
+    background: var(--yellow);
+    border-top: 2px solid var(--black);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  #cta::before {
+    content: '?';
+    position: absolute;
+    font-size: 32rem;
+    font-weight: 900;
+    color: rgba(0,0,0,0.04);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+    line-height: 1;
+  }
+  #cta .sec-title { margin-bottom: 0.8rem; position: relative; }
+  #cta p { font-size: 1.1rem; opacity: 0.55; margin-bottom: 2.5rem; position: relative; }
+
+  .wa-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--black);
+    color: var(--yellow);
+    padding: 1.2rem 2.8rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-decoration: none;
+    border-radius: 2px;
+    box-shadow: 7px 7px 0 rgba(0,0,0,0.18);
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+    letter-spacing: 0.3px;
+  }
+  .wa-cta:hover {
+    transform: translate(-3px,-3px);
+    box-shadow: 10px 10px 0 rgba(0,0,0,0.22);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    border-top: 2px solid rgba(245,200,0,0.12);
+    padding: 2.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .foot-logo { font-size: 1.4rem; font-weight: 900; color: var(--yellow); letter-spacing: -1px; }
+  footer p { font-size: 0.75rem; color: rgba(245,200,0,0.3); }
+  .foot-wa {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: var(--yellow); color: var(--black);
+    padding: 0.65rem 1.3rem;
+    font-weight: 700; font-size: 0.82rem;
+    text-decoration: none; border-radius: 2px;
+    transition: opacity 0.2s;
+  }
+  .foot-wa:hover { opacity: 0.85; }
+
+  /* FLOATING */
+  .fab {
+    position: fixed;
+    bottom: 1.8rem; right: 1.8rem;
+    z-index: 998;
+    background: var(--wa-green);
+    color: white;
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .fab:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.6); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .stats { grid-template-columns: repeat(2,1fr); }
+    section { padding: 4rem 1.5rem; }
+    footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
+    .hero h1 { letter-spacing: -3px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">.Sorted</a>
+  <ul class="nav-links">
+    <li><a href="#diagnose">Diagnose</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li>
+      <a href="https://api.whatsapp.com/send/?phone=447940910853&text=Hi+.Sorted%2C+I+need+help+with+my+car&type=phone_number&app_absent=0" target="_blank" class="wa-nav-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Us
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-badge">🔧 Car Diagnostics & Repair — London</span>
+  <h1>.Sorted</h1>
+  <p class="hero-sub">Car problems? Sorted.</p>
+  <div class="hero-btns">
+    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=Hi+.Sorted%2C+I+need+help+with+my+car&type=phone_number&app_absent=0" target="_blank" class="btn-black">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Message Us Now
+    </a>
+    <a href="#services" class="btn-outline">View Services ↓</a>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">500+</div><div class="stat-lbl">Cars Fixed</div></div>
+  <div class="stat"><div class="stat-num">Same Day</div><div class="stat-lbl">Response</div></div>
+  <div class="stat"><div class="stat-num">5★</div><div class="stat-lbl">Rated</div></div>
+  <div class="stat"><div class="stat-num">All Makes</div><div class="stat-lbl">Covered</div></div>
+</div>
+
+<!-- DIAGNOSE -->
+<section id="diagnose">
+  <div class="sec-label">01 — Diagnose</div>
+  <h2 class="sec-title">What's wrong<br>with your car?</h2>
+  <div class="diag-grid">
+    <div class="diag-card" onclick="wa('Engine warning light is on')">
+      <span class="d-ico">⚠️</span>
+      <h3>Warning Lights</h3>
+      <p>Engine, ABS, oil or dashboard warning light on? We'll scan and diagnose it.</p>
+      <span class="d-arrow">→</span>
+    </div>
+    <div class="diag-card" onclick="wa('My car wont start')">
+      <span class="d-ico">🔑</span>
+      <h3>Won't Start</h3>
+      <p>Dead battery, starter motor, ignition or fuel issue — we'll find it fast.</p>
+      <span class="d-arrow">→</span>
+    </div>
+    <div class="diag-card" onclick="wa('My car is making a strange noise')">
+      <span class="d-ico">🔊</span>
+      <h3>Strange Noises</h3>
+      <p>Knocking, grinding, squealing or rattling? Describe it and we'll sort it.</p>
+      <span class="d-arrow">→</span>
+    </div>
+    <div class="diag-card" onclick="wa('My car is overheating')">
+      <span class="d-ico">🌡️</span>
+      <h3>Overheating</h3>
+      <p>Temperature rising? Could be coolant, thermostat, or water pump.</p>
+      <span class="d-arrow">→</span>
+    </div>
+    <div class="diag-card" onclick="wa('My car has a fluid leak')">
+      <span class="d-ico">💧</span>
+      <h3>Fluid Leaks</h3>
+      <p>Oil, coolant, brake fluid or transmission leak — find and fix it.</p>
+      <span class="d-arrow">→</span>
+    </div>
+    <div class="diag-card" onclick="wa('I have a brake problem')">
+      <span class="d-ico">🛑</span>
+      <h3>Brake Issues</h3>
+      <p>Soft pedal, pulling or grinding when braking — don't delay this one.</p>
+      <span class="d-arrow">→</span>
+    </div>
+    <div class="diag-card" onclick="wa('My car has poor fuel economy')">
+      <span class="d-ico">⛽</span>
+      <h3>Poor Fuel Economy</h3>
+      <p>Burning through fuel too quickly? We'll track down the cause.</p>
+      <span class="d-arrow">→</span>
+    </div>
+    <div class="diag-card" onclick="wa('I have a different car problem')">
+      <span class="d-ico">🔧</span>
+      <h3>Something Else?</h3>
+      <p>Not sure what's wrong? Message us a description and we'll diagnose it.</p>
+      <span class="d-arrow">→</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="sec-label">02 — Services</div>
+  <h2 class="sec-title">What we do</h2>
+  <div class="svc-list">
+    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I%27d+like+a+full+diagnostic+scan&type=phone_number&app_absent=0" target="_blank" class="svc-row">
+      <div class="svc-left">
+        <span class="svc-num">01</span>
+        <span class="svc-name">Full Diagnostic Scan</span>
+        <span class="svc-tag">Popular</span>
+      </div>
+      <span class="svc-arrow">→</span>
+    </a>
+    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+a+service+or+MOT+prep&type=phone_number&app_absent=0" target="_blank" class="svc-row">
+      <div class="svc-left">
+        <span class="svc-num">02</span>
+        <span class="svc-name">Servicing & MOT Prep</span>
+        <span class="svc-tag">Essential</span>
+      </div>
+      <span class="svc-arrow">→</span>
+    </a>
+    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+brake+repair&type=phone_number&app_absent=0" target="_blank" class="svc-row">
+      <div class="svc-left">
+        <span class="svc-num">03</span>
+        <span class="svc-name">Brake Repair & Replacement</span>
+      </div>
+      <span class="svc-arrow">→</span>
+    </a>
+    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+engine+repair&type=phone_number&app_absent=0" target="_blank" class="svc-row">
+      <div class="svc-left">
+        <span class="svc-num">04</span>
+        <span class="svc-name">Engine Repairs</span>
+      </div>
+      <span class="svc-arrow">→</span>
+    </a>
+    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+electrical+or+battery+work&type=phone_number&app_absent=0" target="_blank" class="svc-row">
+      <div class="svc-left">
+        <span class="svc-num">05</span>
+        <span class="svc-name">Electrical & Battery</span>
+      </div>
+      <span class="svc-arrow">→</span>
+    </a>
+    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+suspension+or+steering+work&type=phone_number&app_absent=0" target="_blank" class="svc-row">
+      <div class="svc-left">
+        <span class="svc-num">06</span>
+        <span class="svc-name">Suspension & Steering</span>
+      </div>
+      <span class="svc-arrow">→</span>
+    </a>
+    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+tyres+or+wheel+alignment&type=phone_number&app_absent=0" target="_blank" class="svc-row">
+      <div class="svc-left">
+        <span class="svc-num">07</span>
+        <span class="svc-name">Tyres & Wheel Alignment</span>
+        <span class="svc-tag">Fast</span>
+      </div>
+      <span class="svc-arrow">→</span>
+    </a>
+    <a href="https://api.whatsapp.com/send/?phone=447940910853&text=I+need+air+conditioning+repair&type=phone_number&app_absent=0" target="_blank" class="svc-row">
+      <div class="svc-left">
+        <span class="svc-num">08</span>
+        <span class="svc-name">Air Conditioning</span>
+      </div>
+      <span class="svc-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how">
+  <div class="sec-label">03 — Process</div>
+  <h2 class="sec-title">How it works</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-bg">1</div>
+      <div class="step-ico">💬</div>
+      <h3>Message Us</h3>
+      <p>Drop us a WhatsApp describing your car issue — any make, any model.</p>
+    </div>
+    <div class="step">
+      <div class="step-bg">2</div>
+      <div class="step-ico">🔍</div>
+      <h3>We Diagnose</h3>
+      <p>We ask the right questions, run diagnostics and identify the root cause.</p>
+    </div>
+    <div class="step">
+      <div class="step-bg">3</div>
+      <div class="step-ico">💰</div>
+      <h3>Get a Quote</h3>
+      <p>Clear, honest pricing — no hidden fees. You approve before we start.</p>
+    </div>
+    <div class="step">
+      <div class="step-bg">4</div>
+      <div class="step-ico">✅</div>
+      <h3>Sorted.</h3>
+      <p>We fix it properly, first time. Your car back on the road, problem solved.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="sec-label">04 — Contact</div>
+  <h2 class="sec-title">Ready to get sorted?</h2>
+  <p>One message. No fuss. We get back to you fast.</p>
+  <a href="https://api.whatsapp.com/send/?phone=447940910853&text=Hi+.Sorted%2C+I+need+help+with+my+car&type=phone_number&app_absent=0" target="_blank" class="wa-cta">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp Us Now
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">.Sorted</div>
+  <p>Car problems? Sorted. &nbsp;·&nbsp; London, UK</p>
+  <a href="https://api.whatsapp.com/send/?phone=447940910853&text=Hi+.Sorted&type=phone_number&app_absent=0" target="_blank" class="foot-wa">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    +44 7940 910853
+  </a>
+</footer>
+
+<!-- FLOATING BUTTON -->
+<a href="https://api.whatsapp.com/send/?phone=447940910853&text=Hi+.Sorted%2C+I+need+help+with+my+car&type=phone_number&app_absent=0" target="_blank" class="fab" title="Chat on WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  function wa(issue) {
+    const msg = encodeURIComponent('Hi .Sorted, I need help: ' + issue);
+    window.open('https://api.whatsapp.com/send/?phone=447940910853&text=' + msg + '&type=phone_number&app_absent=0', '_blank');
+  }
+</script>
+</body>
+</html>
